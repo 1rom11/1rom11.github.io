@@ -1,4 +1,5 @@
 <template>
+	
 	<div class="box">
 		<i class="fa fa-home button is-primary"></i>
 	</div>
@@ -11,15 +12,21 @@
 		<input class="input" type="text" ref="name" placeholder="Text input">
 		<button class="button" @click="handleClick">Summit</button>	
 	</div>
-	</template>
+
+	<Modal/>
+		
+</template>
 
 <script>
+import Modal from './components/Modal.vue'
+
 
 export default {
 	name: 'App',
+	components: { Modal },
 	data() {
 		return {
-			title: 'My first vue app'
+			title: 'My First Vue app'
 		}
 	},
 	methods: {

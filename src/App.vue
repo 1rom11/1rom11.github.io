@@ -1,5 +1,7 @@
 <template>
-	
+
+	<Modal/>
+
 	<div class="box">
 		<i class="fa fa-home button is-primary"></i>
 	</div>
@@ -10,10 +12,8 @@
 	
 	<div class="control">
 		<input class="input" type="text" ref="name" placeholder="Text input">
-		<button class="button" @click="handleClick">Summit</button>	
+		<button class="button" @click="handleClick">Summit</button>
 	</div>
-
-	<Modal/>
 		
 </template>
 
@@ -23,7 +23,7 @@ import Modal from './components/Modal.vue'
 
 export default {
 	name: 'App',
-	components: { Modal },
+	components: { Modal, Modal1, Modal2 },
 	data() {
 		return {
 			title: 'My First Vue app'

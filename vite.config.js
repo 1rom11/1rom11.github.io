@@ -11,6 +11,6 @@ export default {
     hmr: {
       port: 443,
     },
-  base: '/vue-app/'
+  base: '/1rom11.github.io/'
   }
 }

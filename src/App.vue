@@ -1,7 +1,7 @@
 <template>
 
-	<Modal/>
-
+	<modal/>
+	
 	<div class="box">
 		<i class="fa fa-home button is-primary"></i>
 	</div>

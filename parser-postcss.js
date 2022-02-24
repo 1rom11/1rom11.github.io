@@ -1,1 +1,0 @@
-!node_modules/prettier/parser-postcss.js

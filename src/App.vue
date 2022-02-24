@@ -1,41 +1,32 @@
 <template>
 
-	<modal/>
 	
 	<div class="box">
 		<i class="fa fa-home button is-primary"></i>
 	</div>
 	
-	
-	<link rel="stylesheet" href="./style.css"/>
-	<h1 class="title">{{ title }}</h1>
-	
-	<div class="control">
-		<input class="input" type="text" ref="name" placeholder="Text input">
-		<button class="button" @click="handleClick">Summit</button>
-	</div>
-		
+	<h1 class="title hero is-primary">{{ title }}</h1>
+	<img src="/src/assets/logo.png" alt="vue-logo" width="100" height="100">
+	<modal />	
 </template>
 
 <script>
-import Modal from './components/Modal.vue'
-
+import Modal from "/src/components/Modal.vue"
 
 export default {
-	name: 'App',
-	components: { Modal, Modal1, Modal2 },
-	data() {
-		return {
-			title: 'My First Vue app'
-		}
-	},
-	methods: {
-		handleClick() {
-			console.log(this.$refs.name.value)
-			this.$refs.name.classList.add('active')
-			this.$ref.name.focus()
-		}
-	}
+    name: 'app',
+
+    data() {
+        return {
+            title: "Romit's Blog"
+        };
+    },
+    methods: {
+
+    },
+    components: { 
+		Modal
+	 }
 }
 
 </script>
@@ -52,5 +43,4 @@ export default {
 	color: #2c3e50;
 	margin-top: 60px;
 }
-
 </style>

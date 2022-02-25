@@ -7,7 +7,7 @@
 	
 	<h1 class="title hero is-primary">{{ title }}</h1>
 	<img src="/src/assets/logo.png" alt="vue-logo" width="100" height="100">
-	<modal />	
+	<Modal />	
 </template>
 
 <script>
@@ -42,5 +42,8 @@ export default {
 	text-align: center;
 	color: #2c3e50;
 	margin-top: 60px;
+}
+h1 {
+	padding: 10px;
 }
 </style>

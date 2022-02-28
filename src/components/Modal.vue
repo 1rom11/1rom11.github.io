@@ -2,6 +2,7 @@
 	<div class="backdrop">
 		<div class="notification is-info">
 			<h1 class="title">HELLO</h1>
+			<p>This is a modal</p>
 		</div>
 	</div>
 </template>

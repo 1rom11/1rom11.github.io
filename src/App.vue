@@ -7,7 +7,7 @@
 	
 	<h1 class="title hero is-primary">{{ title }}</h1>
 	<img src="/src/assets/logo.png" alt="vue-logo" width="100" height="100">
-	<Modal />	
+	<Modal />
 </template>
 
 <script>

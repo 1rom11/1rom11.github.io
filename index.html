@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About me</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<div class="profile">
+  <img src="profile.jpg" alt="Profile Image" class="profile-image">
+</div>
+
+<div class="profile-info">
+  <h2>Romit Das</h2>
+  <p>Student</p> <br/>
+  <p>Here is a bunch of balls.... This was done on a chromebook</p>
+</div>
+
+<div class="navbar">
+  <ul class="social-icons">
+    <li data-tooltip="Discord"><a href="https://discord.com/users/701506259718897674"><i class="fab fa-discord"></i></a></li>
+    <li data-tooltip="Instagram"><a href="https://www.instagram.com/_rom.it/"><i class="fab fa-instagram"></i></a></li>
+  </ul>
+</div>
+
+<script>
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('bgCanvas'),
+    alpha: true
+  });
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.position.z = 10;
+
+  const ballCount = 10;
+  const balls = [];
+  const velocities = [];
+
+  for (let i = 0; i < ballCount; i++) {
+    const geometry = new THREE.SphereGeometry(0.5, 32, 32);
+    const material = new THREE.MeshBasicMaterial({ color: Math.random() * 0xffffff });
+    const ball = new THREE.Mesh(geometry, material);
+
+    ball.position.x = (Math.random() - 0.5) * 10;
+    ball.position.y = (Math.random() - 0.5) * 10;
+    ball.position.z = (Math.random() - 0.5) * 10;
+
+    balls.push(ball);
+    velocities.push({
+      x: (Math.random() - 0.5) * 0.1,
+      y: (Math.random() - 0.5) * 0.1,
+      z: (Math.random() - 0.5) * 0.1,
+    });
+
+    scene.add(ball);
+  }
+
+  function checkCollision(ball1, ball2) {
+    const dist = ball1.position.distanceTo(ball2.position);
+    return dist < 1; 
+  }
+
+  function resolveCollision(ball1, ball2, i, j) {
+    const temp = velocities[i];
+    velocities[i] = velocities[j];
+    velocities[j] = temp;
+  }
+
+  window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+  });
+
+  const animate = function () {
+    requestAnimationFrame(animate);
+
+    for (let i = 0; i < ballCount; i++) {
+      balls[i].position.x += velocities[i].x;
+      balls[i].position.y += velocities[i].y;
+      balls[i].position.z += velocities[i].z;
+
+      if (balls[i].position.x < -5 || balls[i].position.x > 5) velocities[i].x *= -1;
+      if (balls[i].position.y < -5 || balls[i].position.y > 5) velocities[i].y *= -1;
+      if (balls[i].position.z < -5 || balls[i].position.z > 5) velocities[i].z *= -1;
+
+      for (let j = i + 1; j < ballCount; j++) {
+        if (checkCollision(balls[i], balls[j])) {
+          resolveCollision(balls[i], balls[j], i, j);
+        }
+      }
+    }
+
+    renderer.render(scene, camera);
+  };
+
+  animate();
+</script>
+
+</body>
+</html>
